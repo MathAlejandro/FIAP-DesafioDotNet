@@ -1,0 +1,12 @@
+D:\git\FIAP-DesafioDotNet\School\School.Repository\bin\Debug\net6.0\School.Infra.deps.json
+D:\git\FIAP-DesafioDotNet\School\School.Repository\bin\Debug\net6.0\School.Infra.dll
+D:\git\FIAP-DesafioDotNet\School\School.Repository\bin\Debug\net6.0\School.Infra.pdb
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.csproj.AssemblyReference.cache
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.GeneratedMSBuildEditorConfig.editorconfig
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.AssemblyInfoInputs.cache
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.AssemblyInfo.cs
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.csproj.CoreCompileInputs.cache
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.dll
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\refint\School.Infra.dll
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\School.Infra.pdb
+D:\git\FIAP-DesafioDotNet\School\School.Repository\obj\Debug\net6.0\ref\School.Infra.dll
