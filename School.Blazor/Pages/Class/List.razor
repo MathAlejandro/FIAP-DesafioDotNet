@@ -2,6 +2,7 @@
 @using School.Blazor.DTO;
 @using School.Blazor.Data;
 @inject ClassesService _classService;
+@inject NavigationManager navManager
 
 <h3>Turmas</h3>
 
@@ -26,6 +27,7 @@ else
                 <th>Turma</th>
                 <th>Ano</th>
                 <th>Ativo</th>
+                <th colspan="2">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -37,8 +39,8 @@ else
                     <td>@cl.Class</td>
                     <td>@cl.Year</td>
                     <td>@cl.Active</td>
-                    <td><NavLink href="@($"/class/{cl.Id}/students")" class="btn btn-sm btn-success mb-2">Atualizar</NavLink></td>
-                    <td><button @onclick="@(() => InactiveStudent(student.Id))" class="btn btn-sm btn-danger">Inativar</button></td>
+                    <td><NavLink href="@($"/classes/updateClass/{cl.Id}")" class="btn btn-sm btn-success mb-2">Atualizar</NavLink></td>
+                    <td><button @onclick="@(() => InactiveStudent(cl.Id))" class="btn btn-sm btn-danger">Inativar</button></td>
                 </tr>
             }
         </tbody>
@@ -51,5 +53,18 @@ else
     protected override async Task OnInitializedAsync()
     {
         classes = await _classService.GetClasses();
+    }
+
+    protected async Task InactiveStudent(int id)
+    {
+        try
+        {
+            await _classService.Deactive(id);
+            navManager.NavigateTo("/classes");
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 }

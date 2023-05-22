@@ -5,14 +5,27 @@
 
 <h3>Cadastrar Turma</h3>
 
-<Form ButtonText="Criar" cl="@cl"></Form>
+<Form ButtonText="Criar" turma="@turma" OnValidSubmit="@CreateClass"></Form>
 
 @code {
-    ClassDTO cl = new ClassDTO()
+    ClassDTO turma = new ClassDTO()
         {
             CourseId = 0,
             Class = "",
             Year = DateTime.Now.Year,
             Active = true
         };
+
+    async Task CreateClass()
+    {
+        try
+        {
+            var result = await _classService.Create(turma);
+            navManager.NavigateTo("/classes");
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
 }

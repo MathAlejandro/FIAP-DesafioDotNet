@@ -9,7 +9,7 @@ namespace School.Blazor.Shared
         {
             //https://stackoverflow.com/questions/63864594/how-can-i-create-strong-passwords-with-fluentvalidation
             RuleFor(cl => cl.Year)
-                .GreaterThan(DateTime.Now.Year).WithMessage("Não é permitido criar Turmas com datas anteriores da atual.");
+                .GreaterThan(DateTime.Now.Year-1).WithMessage("Não é permitido criar Turmas com datas anteriores da atual.");
 
 
         }

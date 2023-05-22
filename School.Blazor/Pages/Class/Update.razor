@@ -1,0 +1,43 @@
+﻿@page "/classes/updateClass/{id}"
+@using School.Blazor.DTO;
+@inject Data.ClassesService _classesService;
+@inject NavigationManager navManager
+
+
+<h3>Atualizar Turma</h3>
+<br />
+
+<Form ButtonText="Salvar" turma="@turma" OnValidSubmit="@UpdateClass" createForm="false" />
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    ClassDTO turma = new ClassDTO()
+        {
+            CourseId = 0,
+            Class = "",
+            Year = DateTime.Now.Year,
+            Active = true
+        };
+
+
+    protected async override Task OnParametersSetAsync()
+    {
+        turma = await _classesService.GetClass(int.Parse(Id));
+    }
+
+    async Task UpdateClass()
+    {
+        try
+        {
+            await _classesService.Update(turma);
+
+            navManager.NavigateTo("/classes");
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+}

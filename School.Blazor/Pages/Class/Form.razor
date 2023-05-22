@@ -1,7 +1,7 @@
 ﻿@using School.Blazor.DTO;
 
 
-<EditForm Model="@cl" OnValidSubmit="@OnValidSubmit">
+<EditForm Model="@turma" OnValidSubmit="@OnValidSubmit">
     @if (createForm)
     {
         <FluentValidator TValidator="ClassValidator" />
@@ -10,28 +10,28 @@
         <div class="col form-group">
             <label>Nome: </label>
             <div>
-                <InputText @bind-Value="@cl.Class" class="form-control col-sm-3" />
-                <ValidationMessage For="@(() => cl.Class)" />
+                <InputText @bind-Value="@turma.Class" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => turma.Class)" />
             </div>
         </div>
         <div class="col form-group"></div>
     </div>
     <div class="row">
         <div class="col form-group">
-            <label>Nome: </label>
+            <label>Curso: </label>
             <div>
-                <InputNumber @bind-Value="@cl.CourseId" class="form-control col-sm-3" />
-                <ValidationMessage For="@(() => cl.CourseId)" />
+                <InputNumber @bind-Value="@turma.CourseId" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => turma.CourseId)" />
             </div>
         </div>
         <div class="col form-group"></div>
     </div>
     <div class="row">
         <div class="col form-group">
-            <label>Usuario: </label>
+            <label>Ano: </label>
             <div>
-                <InputNumber @bind-Value="@cl.Year" class="form-control col-sm-3" />
-                <ValidationMessage For="@(() => cl.Year)" />
+                <InputNumber @bind-Value="@turma.Year" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => turma.Year)" />
             </div>
         </div>
         <div class="col form-group"></div>
@@ -41,8 +41,8 @@
         <div class="col form-group">
             <label>Ativo: </label>
             <div>
-                <InputCheckbox @bind-Value="@cl.Active" class="">Ativo: </InputCheckbox>
-                <ValidationMessage For="@(() => cl.Active)" />
+                <InputCheckbox @bind-Value="@turma.Active" class="">Ativo: </InputCheckbox>
+                <ValidationMessage For="@(() => turma.Active)" />
             </div>
         </div>
     </div>
@@ -57,7 +57,8 @@
 </EditForm>
 
 @code {
-    public ClassDTO cl { get; set; }
+    [Parameter]
+    public ClassDTO turma { get; set; }
 
     [Parameter]
     public bool createForm { get; set; }
