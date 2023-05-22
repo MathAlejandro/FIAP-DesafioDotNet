@@ -1,0 +1,74 @@
+﻿@using School.Blazor.DTO;
+
+
+<EditForm Model="@student" OnValidSubmit="@OnValidSubmit">
+    @if (createForm)
+    {
+        <FluentValidator TValidator="StudentValidator" />
+    }
+    <div class="row">
+        <div class="col form-group">
+            <label>Nome: </label>
+            <div>
+                <InputText @bind-Value="@student.Name" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => student.Name)" />
+            </div>
+        </div>
+        <div class="col form-group"></div>
+    </div>
+    <div class="row">
+        <div class="col form-group">
+            <label>Usuario: </label>
+            <div>
+                <InputText @bind-Value="@student.User" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => student.User)" />
+            </div>
+        </div>
+        <div class="col form-group"></div>
+    </div>
+
+    @if (createForm)
+    {
+        <div class="row">
+            <div class="col form-group">
+                <label>Senha: </label>
+                <div>
+                    <InputText @bind-Value="@student.Password" class="form-control col-sm-3" />
+                    <ValidationMessage For="@(() => student.Password)" />
+                </div>
+            </div>
+            <div class="col form-group"></div>
+        </div>
+    }
+    <div class="row">
+        <div class="col form-group">
+            <label>Ativo: </label>
+            <div>
+                <InputCheckbox @bind-Value="@student.Active" class="">Ativo: </InputCheckbox>
+                <ValidationMessage For="@(() => student.Active)" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col form-group">
+            <button class="btn btn-primary">
+                @ButtonText
+            </button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public StudentDTO student { get; set; }
+
+    [Parameter]
+    public bool createForm { get; set; }
+
+    [Parameter]
+    public string ButtonText { get; set; } = "Salvar";
+
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+}

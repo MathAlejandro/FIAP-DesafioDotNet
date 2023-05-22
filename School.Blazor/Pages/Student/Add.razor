@@ -1,0 +1,33 @@
+﻿@page "/student/createStudent"
+@using School.Blazor.DTO;
+@inject Data.StudentService _studentService;
+@inject NavigationManager navManager
+
+<h3>Cadastrar Estudante</h3>
+
+<Form ButtonText="Criar" student="@student" OnValidSubmit="@CreateStudent" createForm="true"/>
+
+@code {
+    StudentDTO student = new StudentDTO()
+        {
+            Name = "",
+            User = "",
+            Password = "",
+            Active = true
+        };
+
+    async Task CreateStudent()
+    {
+        try
+        {
+            var result = await _studentService.Create(student);
+
+
+            navManager.NavigateTo("/student");
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+}

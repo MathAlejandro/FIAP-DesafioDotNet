@@ -1,0 +1,68 @@
+﻿@page "/student"
+@using School.Blazor.DTO;
+@using School.Blazor.Data;
+@inject StudentService _studentService;
+@inject NavigationManager navManager
+
+<h3>Estudantes</h3>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <NavLink href="/student/createStudent" class="btn btn-sm btn-success mb-2">Criar Estudante</NavLink>
+    </div>
+</div>
+
+@if (students == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Usuário</th>
+                <th>Senha</th>
+                <th>Ativo</th>
+                <th colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in students)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.User</td>
+                    <td>@student.Password</td>
+                    <td>@student.Active</td>
+                    <td><NavLink  href="@($"/student/updateStudent/{student.Id}")" class="btn btn-sm btn-success mb-2">Atualizar</NavLink></td>
+                    <td><button @onclick="@(() => InactiveStudent(student.Id))" class="btn btn-sm btn-danger">Inativar</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<StudentDTO> students;
+
+    protected override async Task OnInitializedAsync()
+    {
+        students = await _studentService.GetStudents();
+    }
+
+    protected async Task InactiveStudent(int id)
+    {
+        try
+        {
+            await _studentService.Deactive(id);
+            navManager.NavigateTo("/student");
+        }catch(Exception ex)
+        {
+            
+        }
+    }
+}

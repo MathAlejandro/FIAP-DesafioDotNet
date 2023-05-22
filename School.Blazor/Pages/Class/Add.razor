@@ -1,0 +1,18 @@
+﻿@page "/class/createClass"
+@using School.Blazor.DTO;
+@inject Data.ClassesService _classService;
+@inject NavigationManager navManager
+
+<h3>Cadastrar Turma</h3>
+
+<Form ButtonText="Criar" cl="@cl"></Form>
+
+@code {
+    ClassDTO cl = new ClassDTO()
+        {
+            CourseId = 0,
+            Class = "",
+            Year = DateTime.Now.Year,
+            Active = true
+        };
+}

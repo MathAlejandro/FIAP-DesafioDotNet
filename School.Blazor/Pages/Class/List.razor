@@ -1,0 +1,55 @@
+﻿@page "/classes"
+@using School.Blazor.DTO;
+@using School.Blazor.Data;
+@inject ClassesService _classService;
+
+<h3>Turmas</h3>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <NavLink href="/class/createClass" class="btn btn-sm btn-success mb-2">Criar Turma</NavLink>
+    </div>
+</div>
+
+
+@if (classes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id da Turma</th>
+                <th>Id do Curso</th>
+                <th>Turma</th>
+                <th>Ano</th>
+                <th>Ativo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cl in classes)
+            {
+                <tr>
+                    <td>@cl.Id</td>
+                    <td>@cl.CourseId</td>
+                    <td>@cl.Class</td>
+                    <td>@cl.Year</td>
+                    <td>@cl.Active</td>
+                    <td><NavLink href="@($"/class/{cl.Id}/students")" class="btn btn-sm btn-success mb-2">Atualizar</NavLink></td>
+                    <td><button @onclick="@(() => InactiveStudent(student.Id))" class="btn btn-sm btn-danger">Inativar</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<ClassDTO> classes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        classes = await _classService.GetClasses();
+    }
+}

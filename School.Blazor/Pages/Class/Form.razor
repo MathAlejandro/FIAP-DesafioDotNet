@@ -1,0 +1,70 @@
+﻿@using School.Blazor.DTO;
+
+
+<EditForm Model="@cl" OnValidSubmit="@OnValidSubmit">
+    @if (createForm)
+    {
+        <FluentValidator TValidator="ClassValidator" />
+    }
+    <div class="row">
+        <div class="col form-group">
+            <label>Nome: </label>
+            <div>
+                <InputText @bind-Value="@cl.Class" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => cl.Class)" />
+            </div>
+        </div>
+        <div class="col form-group"></div>
+    </div>
+    <div class="row">
+        <div class="col form-group">
+            <label>Nome: </label>
+            <div>
+                <InputNumber @bind-Value="@cl.CourseId" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => cl.CourseId)" />
+            </div>
+        </div>
+        <div class="col form-group"></div>
+    </div>
+    <div class="row">
+        <div class="col form-group">
+            <label>Usuario: </label>
+            <div>
+                <InputNumber @bind-Value="@cl.Year" class="form-control col-sm-3" />
+                <ValidationMessage For="@(() => cl.Year)" />
+            </div>
+        </div>
+        <div class="col form-group"></div>
+    </div>
+
+    <div class="row">
+        <div class="col form-group">
+            <label>Ativo: </label>
+            <div>
+                <InputCheckbox @bind-Value="@cl.Active" class="">Ativo: </InputCheckbox>
+                <ValidationMessage For="@(() => cl.Active)" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col form-group">
+            <button class="btn btn-primary">
+                @ButtonText
+            </button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    public ClassDTO cl { get; set; }
+
+    [Parameter]
+    public bool createForm { get; set; }
+
+    [Parameter]
+    public string ButtonText { get; set; } = "Salvar";
+
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+}

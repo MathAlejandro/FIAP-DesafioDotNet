@@ -1,0 +1,43 @@
+﻿@page "/student/updateStudent/{id}"
+@using School.Blazor.DTO;
+@inject Data.StudentService _studentService;
+@inject NavigationManager navManager
+
+
+<h3>Atualizar Estudante</h3>
+<br />
+
+<Form ButtonText="Salvar" student="student" OnValidSubmit="@UpdateStudent" createForm="false" />
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    StudentDTO student = new StudentDTO()
+        {
+            Name = "",
+            User = "",
+            Password = "",
+            Active = true
+        };
+
+
+    protected async override Task OnParametersSetAsync()
+    {
+        student = await _studentService.GetStudent(int.Parse(Id));
+    }
+
+    async Task UpdateStudent()
+    {
+        try
+        {
+            await _studentService.Update(student);
+
+            navManager.NavigateTo("/student");
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+}
